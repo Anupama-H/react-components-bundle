@@ -110,6 +110,7 @@ const Dropdown = (props) => {
         onCreateCTAClick,
         serverListClassName,
         showClear,
+        customClickHandler,
         onClear,
         ...restProps
     } = props;
@@ -225,7 +226,7 @@ const Dropdown = (props) => {
 
     return (<FormElementWrapper className={`RCB-dropdown ${disabled ? "RCB-disabled" : ""} ${className}`} appearance={appearance}>
         {showLabel && <label className="RCB-form-el-label" htmlFor={name}>{label}</label>}
-        <InlineModal className={inlineModalClasses} ref={inlineModalRef} halign={halign} onModalStateChange={onModalStateChange}>
+        <InlineModal className={inlineModalClasses} ref={inlineModalRef} halign={halign} onModalStateChange={onModalStateChange} customClickHandler={customClickHandler}>
             <InlineModalActivator>
                 <SelectionSummary 
                     selectedItems={selectedItems}

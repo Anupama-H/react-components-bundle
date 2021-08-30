@@ -10,7 +10,7 @@ export const InlineModalBody = (props) => {
 }
 
 let InlineModal = (props, ref) => {
-    const { children, activatorAction, className, isModalOpen:propIsOpen, halign, onModalStateChange } = props;
+    const { children, activatorAction, className, isModalOpen:propIsOpen, halign, onModalStateChange, customClickHandler } = props;
     let [ isModalOpen, setIsModalOpen ] = useState(propIsOpen);
     let activatorProps = {};
     let inlineModalClassName = `RCB-inline-modal ${className}`;
@@ -33,8 +33,16 @@ let InlineModal = (props, ref) => {
             return;
         }
 
-        /* outside click -> close modal */
-        changeModalState(false);
+        /** Do not close wrapper parent modal for event targets
+         * not detected inside parent
+         */
+        if (typeof customClickHandler === "function") {
+            customClickHandler(e.target);
+        } else {
+            /* outside click -> close modal */
+            changeModalState(false);
+        }
+        
     }
     
     useEffect(() => {
