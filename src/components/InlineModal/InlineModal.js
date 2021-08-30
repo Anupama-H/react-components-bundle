@@ -28,23 +28,19 @@ let InlineModal = (props, ref) => {
     }
 
     const onBodyClick = (e) => {
-        if (inlineModalRef.current.contains(e.target)) {
-            /* inside modal click */
-            return;
-        }
-
-        /** Do not close wrapper parent modal for event targets
-         * not detected inside parent
-         */
         if (typeof customClickHandler === "function") {
-            customClickHandler(e.target);
+            customClickHandler(e.target, changeModalState);
         } else {
+            if (inlineModalRef.current.contains(e.target)) {
+                /* inside modal click */
+                return;               
+            }
+
             /* outside click -> close modal */
             changeModalState(false);
-        }
-        
+        }           
     }
-    
+            
     useEffect(() => {
         /* add when mounted */
         document.addEventListener("click", onBodyClick);
