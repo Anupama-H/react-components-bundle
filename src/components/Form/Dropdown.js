@@ -243,7 +243,7 @@ const Dropdown = (props) => {
                     <ServerPaginatedDDList {...commonAttributes} {...serverListAttrs} {...restProps} /> : 
                     <NormalList {...commonAttributes} {...restProps}
                         items={getFilteredOptions(options, searchQuery, nameAttribute)} />}
-                {showCreateCTA && <div className="RCB-dd-create-cta" onClick={onCreateCTAClick}>{createCTAComponent}</div>}
+                {showCreateCTA && <div className="RCB-dd-create-cta" onClick={onCreateCTAClick.bind(null, inlineModalRef)}>{createCTAComponent}</div>}
             </InlineModalBody>
         </InlineModal>
     </FormElementWrapper>);
