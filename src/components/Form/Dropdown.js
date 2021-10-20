@@ -226,7 +226,8 @@ let Dropdown = (props, ref) => {
         searchAttribute,
         responseFormatter,
         getUrlParams,
-        serverListClassName
+        serverListClassName,
+        onChange
     };
 
     const inlineModalClasses = "RCB-form-el " + (showCreateCTA ? "RCB-dd-with-create" : "");
