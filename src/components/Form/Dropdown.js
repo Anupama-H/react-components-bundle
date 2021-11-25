@@ -113,6 +113,7 @@ let Dropdown = (props, ref) => {
         showClear,
         onClear,
         minPageNo,
+        inlineStyle,
         onSearchChange: propSearchChange,
         ...restProps
     } = props;
@@ -238,7 +239,7 @@ let Dropdown = (props, ref) => {
 
     const inlineModalClasses = "RCB-form-el " + (showCreateCTA ? "RCB-dd-with-create" : "");
 
-    return (<FormElementWrapper className={`RCB-dropdown ${disabled ? "RCB-disabled" : ""} ${className}`} appearance={appearance}>
+    return (<FormElementWrapper className={`RCB-dropdown ${disabled ? "RCB-disabled" : ""} ${className}`} appearance={appearance} style={inlineStyle}>
         {showLabel && <label className="RCB-form-el-label" htmlFor={name}>{label}</label>}
         <InlineModal className={inlineModalClasses} ref={inlineModalRef} halign={halign} onModalStateChange={onModalStateChange}>
             <InlineModalActivator>
@@ -370,7 +371,9 @@ Dropdown.propTypes = {
     /** Custom on clear function */
     onClear: PropTypes.func,
     /** Callback on query search in dropdown */
-    onSearchChange: PropTypes.func
+    onSearchChange: PropTypes.func,
+    /** Inline style for dynamic dropdown element */
+    inlineStyle: PropTypes.object
 };
 
 Dropdown.defaultProps = {
@@ -399,7 +402,8 @@ Dropdown.defaultProps = {
     createCTAComponent: <span>Create New</span>,
     onCreateCTAClick: () => {},
     showClear: false,
-    onClear: () => {}
+    onClear: () => {},
+    inlineStyle: {}
 };
 
 export default Dropdown;
